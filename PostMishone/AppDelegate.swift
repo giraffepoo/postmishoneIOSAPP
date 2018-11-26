@@ -23,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         guard let idToken = user.authentication.idToken else { return }
         guard let accessToken = user.authentication.accessToken else { return }
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        let fullName = user.profile.name
-        print("google fullname \(fullName)")
+
+        
+
+        
 
         Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
             if let error = error {
@@ -33,10 +35,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             // User is signed in
             print("Succesfully logged into Firebase with Google")
+            
+            let fullName = user.profile.name // Get profile data from google sign in
+            let email = user.profile.email
+            let userID = Auth.auth().currentUser!.uid
+            let values = ["username": fullName!,"email": email!] as [String : Any]
+            
+            // Place google profile data into database
+            self.registerUserIntoDatabase(userID, values: values as [String : AnyObject])
+            
 //            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             self.window?.rootViewController?.performSegue(withIdentifier: "toMainAppScreen", sender: nil)
             
         }
+    }
+    
+    private func registerUserIntoDatabase(_ userID: String, values: [String: AnyObject]) {
+        // Adding User Info
+        let ref = Database.database().reference()
+        let usersReference = ref.child("Users").child(userID)
+        
+        usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err!)
+                return
+            }
+            print("Successfully Added a New User to the Database")
+        })
     }
 
     var window: UIWindow?

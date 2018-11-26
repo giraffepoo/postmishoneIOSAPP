@@ -28,11 +28,23 @@ class RegisterViewController : UIViewController {
         guard let password = passwordTextField.text else { return }
         guard let name = nameTextField.text else {return}
         
+        if(name.count == 0) {
+            let nError = UIAlertController(title: "Error", message: "Please enter your name.", preferredStyle: UIAlertController.Style.alert);
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
+                print("OK button tapped")
+            };
+            
+            nError.addAction(okAction);
+            
+            self.present(nError, animated: true, completion: nil);
+        }
+        
         if(password.count >= 6) {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil && user != nil {
                     let userID = Auth.auth().currentUser!.uid
-                    let values = ["username": name,"email": email, "password": password] as [String : Any] // TODO: add username (change password)
+                    let values = ["username": name,"email": email] as [String : Any]
                     self.registerUserIntoDatabase(userID, values: values as [String : AnyObject])
                     
                     self.navigationController?.popViewController(animated: false)
@@ -48,7 +60,7 @@ class RegisterViewController : UIViewController {
                 }
             }
         } else {
-            var loginError = UIAlertController(title: "Error", message: "Password too short.", preferredStyle: UIAlertController.Style.alert);
+            let loginError = UIAlertController(title: "Error", message: "Password too short.", preferredStyle: UIAlertController.Style.alert);
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
                 print("OK button tapped")
@@ -75,7 +87,6 @@ class RegisterViewController : UIViewController {
             print("Successfully Added a New User to the Database")
         })
     }
-    
 }
 
 

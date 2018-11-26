@@ -24,23 +24,43 @@ class MyMissionsTableViewController: UITableViewController {
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let missionID = snap.key
-                let isUnderAcceptedMissions = snap.value
+                let isUnderAcceptedMissions = snap.value as? Bool
                 print(missionID)
                 print(isUnderAcceptedMissions)
                 
-                self.ref.child("PostedMissions").queryOrderedByKey().queryEqual(toValue: missionID).observeSingleEvent(of: .childAdded, with: { (snapshot) in
-                    print("IN HERE")
-                    print(snapshot)
-                    if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String {
-                        print(missionName)
-                        self.missionNames.append(missionName)
-                        self.tableView.reloadData()
-                    }
-        })
+                if isUnderAcceptedMissions! { // Look under https://postmishone.firebaseio.com/AcceptedMissions
+                    self.ref.child("AcceptedMissions").queryOrderedByKey().queryEqual(toValue: missionID).observeSingleEvent(of: .childAdded, with: { (snapshot) in
+                        print("LOOKING IN ACCEPTEDMISSIONS")
+                        print(snapshot)
+                        if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String {
+                            print(missionName)
+                            self.missionNames.append(missionName)
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+                else { // Look under https://postmishone.firebaseio.com/PostedMissions
+                    self.ref.child("PostedMissions").queryOrderedByKey().queryEqual(toValue: missionID).observeSingleEvent(of: .childAdded, with: { (snapshot) in
+                        print("LOOKING IN POSTEDMISSIONS")
+                        print(snapshot)
+                        if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String {
+                            print(missionName)
+                            self.missionNames.append(missionName)
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+
                 self.missionIDS.append(missionID)
             }
         })
         print("inside MyMissionsTableView")
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

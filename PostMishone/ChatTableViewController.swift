@@ -38,7 +38,7 @@ class ChatTableViewController: UITableViewController {
         self.tabBarController?.tabBar.isHidden = false
    
         // that icon on the top right
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 7)!, target: self, action: #selector(handleNewMessage))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 7)!, target: self, action: #selector(handleNewMessage))
 
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
@@ -49,6 +49,7 @@ class ChatTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem(rawValue: 7)!, target: self, action: #selector(handleNewMessage))
         self.tabBarController?.tabBar.isHidden = false
     }
     
