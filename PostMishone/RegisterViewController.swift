@@ -44,7 +44,7 @@ class RegisterViewController : UIViewController {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil && user != nil {
                     let userID = Auth.auth().currentUser!.uid
-                    let values = ["username": name,"email": email] as [String : Any]
+                    let values = ["username": name,"email": email, "balance": 0.0] as [String : Any]
                     self.registerUserIntoDatabase(userID, values: values as [String : AnyObject])
                     
                     self.navigationController?.popViewController(animated: false)

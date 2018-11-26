@@ -22,6 +22,7 @@ class ViewAcceptedMission: UIViewController, PayPalPaymentDelegate {
     var reward = ""
     var missionTitle = ""
     var subtitle = ""
+    var accID = ""
     
     //create paypal object
     var payPalConfig = PayPalConfiguration()
@@ -42,17 +43,18 @@ class ViewAcceptedMission: UIViewController, PayPalPaymentDelegate {
         ref = Database.database().reference() // Firebase Reference
         
         ref?.child("AcceptedMissions").child(missionID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String, let missionDescription = dic["missionDescription"] as? String, let reward = dic["reward"] as? String, let posterID = dic["UserID"] as? String? {
+            if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String, let missionDescription = dic["missionDescription"] as? String, let reward = dic["reward"] as? String, let posterID = dic["UserID"] as? String, let accID = dic["acceptorID"] as? String {
                 self.mtitle.text = missionName
                 self.missionTitle = missionName
                 self.mdescription.text = missionDescription
                 self.subtitle = missionDescription
                 self.mreward.text = "$" + reward
                 self.reward = reward
-                self.PID = posterID!
+                self.PID = posterID
+                self.accID = accID
                 
                 // fetch the username
-                let username = Database.database().reference().child("Users").child(posterID!)
+                let username = Database.database().reference().child("Users").child(accID)
                 
                 username.observeSingleEvent(of: .value, with: { (snapshot) in
                     let value = snapshot.value as? NSDictionary
@@ -116,11 +118,30 @@ class ViewAcceptedMission: UIViewController, PayPalPaymentDelegate {
             
             let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
             present(paymentViewController!, animated: true, completion: nil)
+
+            
         }
         else {
             
             print("Payment not processalbe: \(payment)")
         }
+        
+        var userBalance = 0.0;
+        print("beforebefore \(userBalance)")
+        
+        ref?.child("Users").child(accID).child("balance").observeSingleEvent(of: .value, with: { (snapshot) in
+            print("IN PAYMENT")
+            if let bal = snapshot.value as? Double {
+                userBalance = bal as! Double
+                print("before \(bal)")
+                print("reward \(self.reward)")
+                userBalance += Double(truncating: NSDecimalNumber(string: self.reward))
+                self.ref.child("Users").child(self.accID).child("balance").setValue(userBalance)
+            }
+        })
+        
+
+        
     }
     
     func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {

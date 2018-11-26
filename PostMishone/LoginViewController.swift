@@ -84,7 +84,7 @@ class LoginViewController : UIViewController, GIDSignInUIDelegate, FBSDKLoginBut
                     let json = JSON(result)
                     print(json)
                     let userID = Auth.auth().currentUser!.uid
-                    let values = ["email": json["email"].stringValue, "username": json["name"].stringValue] as [String : Any] // TODO: add username (change password)
+                    let values = ["email": json["email"].stringValue, "username": json["name"].stringValue, "balance" : 0.0] as [String : Any]  // TODO: add username (change password)
                     self.registerUserIntoDatabase(userID, values: values as [String : AnyObject])
                 }
                 

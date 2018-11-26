@@ -54,7 +54,7 @@ class MissionDescriptionViewController: UIViewController {
         let userProfilesRef = storeRef.child("images/profiles/\(posterID)")
         
         // fetch the username
-        let username = Database.database().reference().child("Users").child(userID)
+        let username = Database.database().reference().child("Users").child(posterID)
         
         username.observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary

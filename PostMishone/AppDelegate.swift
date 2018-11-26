@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             let fullName = user.profile.name // Get profile data from google sign in
             let email = user.profile.email
             let userID = Auth.auth().currentUser!.uid
-            let values = ["username": fullName!,"email": email!] as [String : Any]
+            let values = ["username": fullName!,"email": email!, "balance": 0.0] as [String : Any]
             
             // Place google profile data into database
             self.registerUserIntoDatabase(userID, values: values as [String : AnyObject])
