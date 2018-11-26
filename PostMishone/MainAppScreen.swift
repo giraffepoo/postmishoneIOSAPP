@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import MapKit
 import CoreLocation
+import UserNotifications
 
 // Custom class for missions: (replacing MKAnnotation)
  class missionAnnotation: NSObject, MKAnnotation {
@@ -32,7 +33,7 @@ import CoreLocation
     }
  }
 
-class MainAppScreen: UIViewController {
+class MainAppScreen: UIViewController, UNUserNotificationCenterDelegate {
     var ref: DatabaseReference!
     var missionPostsArray = [missionAnnotation]()
     var selectedAnnotation: missionAnnotation?
@@ -58,7 +59,32 @@ class MainAppScreen: UIViewController {
         ref = Database.database().reference() // Firebase Reference
         checkLocationServices() // Check user location settings -> initiate user map
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
+        
+        UNUserNotificationCenter.current().delegate = self
+        
+        ref.child("Users").child(userID).child("MissionPosts").observe(.childChanged, with: { (snapshot) in
+            
+            let content = UNMutableNotificationContent()
+            
+            //adding title, subtitle, body and badge
+            content.title = "Your mission has been accepted"
+            
+            //getting the notification trigger
+            //it will be called after 2 seconds
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+            
+            //getting the notification request
+            let request = UNNotificationRequest(identifier: "SimplifiedIOSNotification", content: content, trigger: trigger)
+            
+            //adding the notification to notification center
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        }, withCancel: nil)
 
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
     }
     
     override func viewDidAppear(_ animated: Bool) {

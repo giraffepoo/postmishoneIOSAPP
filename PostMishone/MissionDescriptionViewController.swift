@@ -38,7 +38,7 @@ class MissionDescriptionViewController: UIViewController {
         ref = Database.database().reference() // Firebase Reference
         missionTitleLabel.text = missionTitle
         missionSubtitleTextView.text = subtitle
-        missionRewardLabel.text = reward
+        missionRewardLabel.text = "$" + reward
         
         // Set up border for text view
         let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)

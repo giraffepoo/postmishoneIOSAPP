@@ -137,6 +137,8 @@ class ViewAcceptedMission: UIViewController, PayPalPaymentDelegate {
                 print("reward \(self.reward)")
                 userBalance += Double(truncating: NSDecimalNumber(string: self.reward))
                 self.ref.child("Users").child(self.accID).child("balance").setValue(userBalance)
+                self.ref.child("Users").child(self.userID).child("PostedMissions").child(self.missionID).removeValue()
+                self.ref.child("AcceptedMissions").child(self.missionID).removeValue()
             }
         })
         
@@ -154,7 +156,13 @@ class ViewAcceptedMission: UIViewController, PayPalPaymentDelegate {
         print("PayPal Payment Success !")
         paymentViewController.dismiss(animated: true, completion: { () -> Void in
             print("Here is your proof of payment:")
+            self.backTwo()
         })
+    }
+    
+    func backTwo() {
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
     }
     
 }

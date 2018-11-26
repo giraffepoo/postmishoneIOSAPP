@@ -18,12 +18,22 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var uiimgvpropic: UIImageView!
     @IBOutlet weak var uiname: UILabel!
     @IBOutlet weak var uiemail: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
     
     var imagePicker:UIImagePickerController!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
+        
+        
+//        Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+//            let value = snapshot.value
+//            let str = String(format: "%.2f", value as! CVarArg)
+//
+//            self.amountLabel.text = "$" + str
+//        }
     }
     
     override func viewDidLoad() {
@@ -47,6 +57,10 @@ class SettingsViewController: UIViewController {
             let name = value?["username"] as? String ?? ""
             self.uiname.text = name
         })
+        
+        
+        
+        
         
         // reference to firebase storage
         let store = Storage.storage()
@@ -120,6 +134,15 @@ class SettingsViewController: UIViewController {
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         
+        
+        Database.database().reference().child("Users").child(Auth.auth().currentUser!.uid).child("balance").observe(.value) { (snapshot) in
+            print("UPDATED AMOUNT")
+            let value = snapshot.value as? Double
+            print(value!)
+            let str = String(format: "%.2f", value!)
+            
+            self.amountLabel.text = "$" + str
+        }
     }
     
     override func didReceiveMemoryWarning() {
