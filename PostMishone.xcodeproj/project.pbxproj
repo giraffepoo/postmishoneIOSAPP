@@ -28,6 +28,7 @@
 		57073D5621AC09AC00EAAC02 /* ViewAcceptedMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */; };
 		57073D5821AC1ED100EAAC02 /* ViewProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5721AC1ED100EAAC02 /* ViewProfile.swift */; };
 		57073D5A21AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5921AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift */; };
+		57073D5C21AC76AD00EAAC02 /* ViewAcceptedPostersMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5B21AC76AD00EAAC02 /* ViewAcceptedPostersMission.swift */; };
 		57B53330218EE2CD004C89B4 /* MissionDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */; };
 		57B533322192D743004C89B4 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B533312192D743004C89B4 /* BaseTabBarController.swift */; };
 		57B533342192DCD6004C89B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B533332192DCD6004C89B4 /* Main.storyboard */; };
@@ -94,6 +95,7 @@
 		57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAcceptedMission.swift; sourceTree = "<group>"; };
 		57073D5721AC1ED100EAAC02 /* ViewProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfile.swift; sourceTree = "<group>"; };
 		57073D5921AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAcceptedMissionsTableViewController.swift; sourceTree = "<group>"; };
+		57073D5B21AC76AD00EAAC02 /* ViewAcceptedPostersMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAcceptedPostersMission.swift; sourceTree = "<group>"; };
 		57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDescriptionViewController.swift; sourceTree = "<group>"; };
 		57B533312192D743004C89B4 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		57B533332192DCD6004C89B4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				57DA65EF2173628E008B9E06 /* Info.plist */,
 				57073CF821AB8BF000EAAC02 /* PostMishone-Bridging-Header.h */,
 				57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */,
+				57073D5B21AC76AD00EAAC02 /* ViewAcceptedPostersMission.swift */,
 				57073D5721AC1ED100EAAC02 /* ViewProfile.swift */,
 			);
 			path = PostMishone;
@@ -573,6 +576,7 @@
 				57DA65FA21736532008B9E06 /* MainNavigationController.swift in Sources */,
 				57073CF221AB675200EAAC02 /* UserCell.swift in Sources */,
 				57DA65E62173628C008B9E06 /* ViewController.swift in Sources */,
+				57073D5C21AC76AD00EAAC02 /* ViewAcceptedPostersMission.swift in Sources */,
 				57B53330218EE2CD004C89B4 /* MissionDescriptionViewController.swift in Sources */,
 				6C44EDEA21AA4E5C00BAD91E /* ViewMyMission.swift in Sources */,
 				57DA66172174320C008B9E06 /* DescribeMissionViewController.swift in Sources */,

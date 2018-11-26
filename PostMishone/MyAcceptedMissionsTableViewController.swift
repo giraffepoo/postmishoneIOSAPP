@@ -19,6 +19,8 @@ class MyAcceptedMissionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Accepted Missions"
         ref = Database.database().reference() //Firebase Reference
         ref?.child("Users").child(userID).child("AcceptedMissions").observe(.value, with: { (snapshot) in
             for child in snapshot.children {
@@ -59,4 +61,19 @@ class MyAcceptedMissionsTableViewController: UITableViewController {
         return cell
     }
 
-}
+    // Bring user to ViewMyMission view controller based on the mission on list they selected
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedMission = missionIDS[indexPath.row]
+        print(selectedMission)
+        //segue here
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            let destination = segue.destination as? ViewAcceptedPostersMission
+            destination?.missionID = selectedMission
+        }
+        
+    }
+    
+    
+

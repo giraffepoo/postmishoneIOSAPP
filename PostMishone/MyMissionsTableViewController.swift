@@ -19,6 +19,8 @@ class MyMissionsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "My Missions"
         ref = Database.database().reference() //Firebase Reference
         ref?.child("Users").child(userID).child("MissionPosts").observe(.value, with: { (snapshot) in
             for child in snapshot.children {

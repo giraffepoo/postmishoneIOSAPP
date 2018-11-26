@@ -192,7 +192,7 @@ class ChatLogViewController: UICollectionViewController, UITextFieldDelegate, UI
     }
     
     private func setupCell(cell: ChatMessageCell, message: Message){
-        if let toId = message.toId {
+        if let toId = message.fromId {
         cell.profileImageView.loadImageUsingCacheWithU(toId: toId)
         }
         
