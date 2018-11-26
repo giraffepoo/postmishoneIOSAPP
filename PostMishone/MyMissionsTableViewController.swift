@@ -23,8 +23,10 @@ class MyMissionsTableViewController: UITableViewController {
         ref?.child("Users").child(userID).child("MissionPosts").observe(.value, with: { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
-                let missionID = snap.key as! String
+                let missionID = snap.key
+                let isUnderAcceptedMissions = snap.value
                 print(missionID)
+                print(isUnderAcceptedMissions)
                 
                 self.ref.child("PostedMissions").queryOrderedByKey().queryEqual(toValue: missionID).observeSingleEvent(of: .childAdded, with: { (snapshot) in
                     print("IN HERE")

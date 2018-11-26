@@ -23,7 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         guard let idToken = user.authentication.idToken else { return }
         guard let accessToken = user.authentication.accessToken else { return }
         let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        
+        let fullName = user.profile.name
+        print("google fullname \(fullName)")
+
         Auth.auth().signInAndRetrieveData(with: credentials) { (authResult, error) in
             if let error = error {
                 print("Failed to create Firebase User with Google Account: ", error)
