@@ -97,15 +97,19 @@ class MissionDescriptionViewController: UIViewController {
     @IBAction func acceptMission(_ sender: Any) {
         print("accept mission")
         
+        
+        // Move mission from "PostedMissions" to "AcceptedMissions" - with additional field: "acceptorID"
         self.ref.child("AcceptedMissions").child(missionID).setValue(["Latitude": latitude, "Longitude": longitude, "UserID": posterID, "acceptorID" : userID, "timeStamp": timeStamp, "missionName": missionTitle, "missionDescription": subtitle, "reward": reward, "missionID": missionID])
+        deleteVisibleMissionPost()
         
-         deleteVisibleMissionPost()
+        // Create post under user's "AcceptedMissions"
+        ref?.child("Users").child(userID).child("AcceptedMissions").child(missionID).setValue(missionID)
         
-    ref?.child("Users").child(userID).child("AcceptedMissions").child(missionID).setValue(missionID)
+        // Find the poster and set their mission to selected
+        ref?.child("Users").child(posterID).child("MissionPosts").child(missionID).setValue(true)
         
-        ref?.child("Users").child(userID).child("MissionHistory").child(missionID).setValue(missionID)
+        self.navigationController?.popViewController(animated: true)
 
-        
     }
     
     func deleteVisibleMissionPost() {

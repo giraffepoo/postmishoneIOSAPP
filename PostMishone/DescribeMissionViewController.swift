@@ -79,7 +79,7 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
         
         if(mName.count == 0) {
             
-            var nameError = UIAlertController(title: "Error", message: "Please specify mission name.", preferredStyle: UIAlertController.Style.alert);
+            let nameError = UIAlertController(title: "Error", message: "Please specify mission name.", preferredStyle: UIAlertController.Style.alert);
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
                 print("OK button tapped")
@@ -91,7 +91,7 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
             
         } else if(mDescription.count == 0) {
             
-            var dError = UIAlertController(title: "Error", message: "Please enter mission description.", preferredStyle: UIAlertController.Style.alert);
+            let dError = UIAlertController(title: "Error", message: "Please enter mission description.", preferredStyle: UIAlertController.Style.alert);
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
                 print("OK button tapped")
@@ -103,7 +103,7 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
             
         } else if(Int(mReward) == nil) {
             
-            var rError = UIAlertController(title: "Error", message: "Please enter numbers only for reward.", preferredStyle: UIAlertController.Style.alert);
+            let rError = UIAlertController(title: "Error", message: "Please enter numbers only for reward.", preferredStyle: UIAlertController.Style.alert);
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
                 print("OK button tapped")
@@ -115,7 +115,7 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
             
         } else if(mCategory.count == 0) {
             
-            var cError = UIAlertController(title: "Error", message: "Please enter category for mission.", preferredStyle: UIAlertController.Style.alert);
+            let cError = UIAlertController(title: "Error", message: "Please enter category for mission.", preferredStyle: UIAlertController.Style.alert);
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { (Action) in
                 print("OK button tapped")
@@ -145,7 +145,7 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
             ref?.child("PostedMissions").child(missionID!).setValue(["Latitude": latitude, "Longitude": longitude, "UserID": userID, "timeStamp": timeStamp, "missionName": missionName.text!, "missionDescription": missionDescription.text!, "reward": reward.text!, "missionID": missionID!, "category" : missionCategory.text!])
             
             // Add to https://postmishone.firebaseio.com/users/(currentuserid)/
-            ref?.child("Users").child(userID).child("MissionPosts").child(missionID!).setValue(missionID!)
+            ref?.child("Users").child(userID).child("MissionPosts").child(missionID!).setValue(false)
             
             
             
@@ -165,9 +165,9 @@ class DescribeMissionViewController: UIViewController, UIPickerViewDataSource, U
     func dismissPickerView() {
         let toolBar = UIToolbar()
 
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: "donePicker")
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: Selector(("donePicker")))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: "donePicker")
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: Selector(("donePicker")))
         
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
