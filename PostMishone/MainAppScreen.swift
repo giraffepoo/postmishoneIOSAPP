@@ -213,8 +213,8 @@ class MainAppScreen: UIViewController {
             destination?.missionID = selectedAnnotation?.missionID ?? ""
             destination?.latitude = selectedAnnotation?.coordinate.latitude ?? 0.0
             destination?.longitude = selectedAnnotation?.coordinate.longitude ?? 0.0
-            
         }
+        
     }
     
     

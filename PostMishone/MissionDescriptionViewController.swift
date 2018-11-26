@@ -118,4 +118,9 @@ class MissionDescriptionViewController: UIViewController {
         
 
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as? ViewProfile
+        dest?.posterID = posterID
+    }
 }

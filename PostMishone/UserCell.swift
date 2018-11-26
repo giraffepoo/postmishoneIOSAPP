@@ -14,7 +14,7 @@ class UserCell: UITableViewCell{
     var message: Message? {
         didSet{
             
-           setupNameAndProfileImage()
+            setupNameAndProfileImage()
             
             detailTextLabel?.text = message?.text
             
@@ -26,15 +26,33 @@ class UserCell: UITableViewCell{
                 
                 timeLabel.text = dateFormatter.string(from: timestampDate as Date)
             }
-
+            
             
         }
     }
     
     private func setupNameAndProfileImage (){
-
-    
+        
         if let id = message?.chatPartnerId() {
+            
+            let store = Storage.storage()
+            // refer our storage service
+            let storeRef = store.reference(forURL: "gs://postmishone.appspot.com")
+            // access files and paths
+            let userProfilesRef = storeRef.child("images/profiles/\(id)")
+            
+            userProfilesRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                if data == nil {
+                    let none = Storage.storage().reference(forURL: "gs://postmishone.appspot.com").child("images/profiles/yolo123empty.jpg")
+                    none.getData(maxSize: 1*1024*1024, completion: { (data_none, error_none) in
+                        if error_none != nil {
+                            print("error fetching the none profile pic")
+                        } else {
+                            self.profileImageView.image = UIImage(named: "yolo123empty")
+                        }
+                    })
+                }
+            }
             
             let ref = Database.database().reference().child("Users").child(id)
             ref.observeSingleEvent(of: .value, with: {(snapshot)

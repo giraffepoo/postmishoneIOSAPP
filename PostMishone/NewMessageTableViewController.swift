@@ -14,7 +14,7 @@ class User: NSObject{
     var username: String?
     var email: String?
     var id: String?
-
+    
 }
 
 class NewMessageTableViewController: UITableViewController {
@@ -25,8 +25,8 @@ class NewMessageTableViewController: UITableViewController {
     
     var users = [User]()
     let cellID = "cellID"
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,30 +38,40 @@ class NewMessageTableViewController: UITableViewController {
         
         fetchUser()
         
-        
     }
     
     //get user from database
     func fetchUser(){
-        Database.database().reference().child("Users").observe(.childAdded, with: {(snapshot) in
+        Database.database().reference().child("Users").child(userID).child("FriendsList").observe(.childAdded, with: {(snapshot) in
+            //  Database.database().reference().child("Users").observe(.childAdded, with: {(snapshot) in
+            print(snapshot.value)
             
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                let user = User()
-                print("hi")
-                user.id = snapshot.key
-                print(user.id!)
+            /* if let dictionary = snapshot.value as? [String: AnyObject]{
+             let user = User()
+             user.id = dictionary["friend"] as? String
+             print(user.id)
+             print(user.id!) */
+            
+            let userId = snapshot.value
+            
+            Database.database().reference().child("Users").child(userId as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                user.email = dictionary["email"] as? String
-                user.username = dictionary["username"] as? String
-                self.users.append(user)
-                DispatchQueue.main.async(execute: {self.tableView.reloadData()})
-            }
-            
-    } , withCancel: nil)
-        
-
-}
-
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let usera = User()
+                    usera.id = snapshot.key
+                    print(usera.id!)
+                    
+                    usera.email = dictionary ["email"] as? String
+                    usera.username = dictionary ["username"] as? String
+                    self.users.append(usera)
+                    DispatchQueue.main.async(execute: {self.tableView.reloadData()})
+                }
+            }, withCancel: nil)
+            // }
+        }, withCancel: nil)
+    }
+    
+    
     // when cancel to create a new message
     @objc func handleCancel(){
         dismiss(animated: true, completion: nil)
@@ -69,7 +79,7 @@ class NewMessageTableViewController: UITableViewController {
     
     // set number of rows in the table view
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return users.count
     }
     
@@ -84,12 +94,13 @@ class NewMessageTableViewController: UITableViewController {
         cell.textLabel?.text = user.username
         cell.detailTextLabel?.text = user.email
         
-       return cell
-    
+        
+        return cell
+        
     }
     
     // height for each row/cell
-  override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 77
     }
     
@@ -104,7 +115,7 @@ class NewMessageTableViewController: UITableViewController {
             let user = self.users[indexPath.row]
             print(user)
             self.chattableController?.showChatControllerForUser(user: user)
-        
+            
         }
     }
 }
