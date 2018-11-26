@@ -12,7 +12,7 @@ import UIKit
 
 class MissionsTableViewController: UITableViewController {
     
-    let menuItems = ["My Missions", "Accepted Missions", "Mission History"]
+    let menuItems = ["My Missions", "Accepted Missions"]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +41,9 @@ class MissionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row == 0) {
             performSegue(withIdentifier: "toMyMissions", sender: self)
+        }
+        if(indexPath.row == 1) {
+            performSegue(withIdentifier: "toMyAcceptedMissions", sender: self)
         }
     }
 

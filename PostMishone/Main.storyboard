@@ -45,6 +45,7 @@
                         <outlet property="mapView" destination="oan-4L-QDg" id="5bP-w4-EQ0"/>
                         <segue destination="zLw-R9-92r" kind="show" identifier="toDescribeMission" id="8Pu-kh-mlT"/>
                         <segue destination="ynn-RF-M2D" kind="show" identifier="toMissionDescription" id="bpv-ue-Fis"/>
+                        <segue destination="zRr-5P-oA1" kind="show" identifier="toViewMyMission" id="ly7-sV-eQx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwP-b1-Y0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -436,6 +437,7 @@
                                 <state key="normal" title="Payment"/>
                                 <connections>
                                     <action selector="PaymentPress:" destination="zRr-5P-oA1" eventType="touchUpInside" id="trE-cH-sQ2"/>
+                                    <action selector="paypalpayment:" destination="it7-Ps-lqj" eventType="touchUpInside" id="lYY-eh-IDx"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1G4-Ga-d9a">
@@ -449,6 +451,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="QPe-2o-JcS"/>
                     </view>
+                    <connections>
+                        <outlet property="mdescription" destination="qg4-9g-xpF" id="qA1-HB-9oG"/>
+                        <outlet property="mname" destination="1G4-Ga-d9a" id="6Pf-bA-eo0"/>
+                        <outlet property="mreward" destination="YN1-ik-rQt" id="dYF-z7-5MI"/>
+                        <outlet property="mtitle" destination="Oj0-Ws-8Dt" id="EyC-Md-Ia1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sie-kV-V0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -666,6 +674,7 @@
                     <tabBarItem key="tabBarItem" title="" image="Social" id="GUD-lQ-2Xv"/>
                     <connections>
                         <segue destination="3Jb-OQ-nD7" kind="show" identifier="toMyMissions" id="CeJ-KP-ngD"/>
+                        <segue destination="i0h-AN-Y4j" kind="show" identifier="toMyAcceptedMissions" id="IOE-WX-4zN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3U-8S-ZSF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -860,16 +869,16 @@
             </objects>
             <point key="canvasLocation" x="3705" y="334"/>
         </scene>
-        <!--Table View Controller-->
+        <!--My Accepted Missions Table View Controller-->
         <scene sceneID="pnV-cN-eon">
             <objects>
-                <tableViewController id="i0h-AN-Y4j" sceneMemberID="viewController">
+                <tableViewController id="i0h-AN-Y4j" customClass="MyAcceptedMissionsTableViewController" customModule="PostMishone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="moS-NU-LvL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SYn-gL-Um2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="SYn-gL-Um2">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SYn-gL-Um2" id="emc-9V-Pq6">
@@ -883,38 +892,13 @@
                             <outlet property="delegate" destination="i0h-AN-Y4j" id="EBC-cd-LiC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="it7-Ps-lqj" kind="show" identifier="toViewAcceptedMission" id="NmI-gt-Fyn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uR4-8J-pHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2724" y="1904"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="fyu-QJ-XPv">
-            <objects>
-                <tableViewController id="HtA-zW-x5a" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="r8u-4Z-87X">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nhQ-FK-xdf">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nhQ-FK-xdf" id="wUd-sL-XFZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="HtA-zW-x5a" id="gou-4Z-29L"/>
-                            <outlet property="delegate" destination="HtA-zW-x5a" id="4a4-th-LkA"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="imZ-gO-tdv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3662" y="1903"/>
+            <point key="canvasLocation" x="3705" y="1094"/>
         </scene>
         <!--View My Mission-->
         <scene sceneID="4n9-ba-j42">
@@ -983,15 +967,6 @@
                                 <state key="normal" title="Update Mission"/>
                                 <connections>
                                     <action selector="updateMission:" destination="zRr-5P-oA1" eventType="touchUpInside" id="UaS-MC-WWg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcW-CH-6cr">
-                                <rect key="frame" x="155" y="423" width="60" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Payment"/>
-                                <connections>
-                                    <action selector="PaymentPress:" destination="zRr-5P-oA1" eventType="touchUpInside" id="ap2-Nt-Y30"/>
-                                    <segue destination="lDg-TD-h8Q" kind="show" id="ZHq-Ei-wYd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1136,8 +1111,10 @@
         <image name="Social" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="L4e-iZ-dp3"/>
         <segue reference="GAy-IM-LjO"/>
         <segue reference="Zag-NY-nmr"/>
+        <segue reference="OCa-ch-3e2"/>
         <segue reference="3j4-Ko-JX7"/>
     </inferredMetricsTieBreakers>
 </document>

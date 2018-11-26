@@ -214,6 +214,11 @@ class MainAppScreen: UIViewController {
             destination?.latitude = selectedAnnotation?.coordinate.latitude ?? 0.0
             destination?.longitude = selectedAnnotation?.coordinate.longitude ?? 0.0
         }
+        if segue.identifier == "toViewMyMission" { // View Personal Posted Mission
+            let destination = segue.destination as? ViewMyMission
+            destination?.missionID = selectedAnnotation?.missionID ?? ""
+            destination?.enteredFromMap = true
+        }
         
     }
     
@@ -269,7 +274,12 @@ extension MainAppScreen: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("info")
-        self.performSegue(withIdentifier: "toMissionDescription", sender: self)
+        if(selectedAnnotation?.missionPosterID == userID) {
+            self.performSegue(withIdentifier: "toViewMyMission", sender: self)
+        }
+        else {
+            self.performSegue(withIdentifier: "toMissionDescription", sender: self)
+        }
     }
     
     

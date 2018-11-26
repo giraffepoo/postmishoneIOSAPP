@@ -27,6 +27,7 @@
 		57073D5221AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57073D5121AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist */; };
 		57073D5621AC09AC00EAAC02 /* ViewAcceptedMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */; };
 		57073D5821AC1ED100EAAC02 /* ViewProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5721AC1ED100EAAC02 /* ViewProfile.swift */; };
+		57073D5A21AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5921AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift */; };
 		57B53330218EE2CD004C89B4 /* MissionDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */; };
 		57B533322192D743004C89B4 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B533312192D743004C89B4 /* BaseTabBarController.swift */; };
 		57B533342192DCD6004C89B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B533332192DCD6004C89B4 /* Main.storyboard */; };
@@ -92,6 +93,7 @@
 		57073D5121AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PayPal-iOS-SDK-Sample-App-Info.plist"; sourceTree = "<group>"; };
 		57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAcceptedMission.swift; sourceTree = "<group>"; };
 		57073D5721AC1ED100EAAC02 /* ViewProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfile.swift; sourceTree = "<group>"; };
+		57073D5921AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAcceptedMissionsTableViewController.swift; sourceTree = "<group>"; };
 		57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDescriptionViewController.swift; sourceTree = "<group>"; };
 		57B533312192D743004C89B4 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		57B533332192DCD6004C89B4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				57B533312192D743004C89B4 /* BaseTabBarController.swift */,
 				57B533372192ECBB004C89B4 /* MissionsTableViewController.swift */,
 				57B533392192F1E4004C89B4 /* MyMissionsTableViewController.swift */,
+				57073D5921AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift */,
 				6C44EDE921AA4E5C00BAD91E /* ViewMyMission.swift */,
 				6C44EDE721AA2C4400BAD91E /* SearchMission.swift */,
 				57DA66032173DCFE008B9E06 /* PostMishone.entitlements */,
@@ -566,6 +569,7 @@
 				57B533382192ECBB004C89B4 /* MissionsTableViewController.swift in Sources */,
 				57073CF521AB675200EAAC02 /* Extensions.swift in Sources */,
 				57DA66002173716D008B9E06 /* RegisterViewController.swift in Sources */,
+				57073D5A21AC358000EAAC02 /* MyAcceptedMissionsTableViewController.swift in Sources */,
 				57DA65FA21736532008B9E06 /* MainNavigationController.swift in Sources */,
 				57073CF221AB675200EAAC02 /* UserCell.swift in Sources */,
 				57DA65E62173628C008B9E06 /* ViewController.swift in Sources */,

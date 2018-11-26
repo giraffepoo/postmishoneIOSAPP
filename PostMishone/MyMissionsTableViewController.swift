@@ -52,11 +52,8 @@ class MyMissionsTableViewController: UITableViewController {
                         }
                     })
                 }
-
-//                self.missionIDS.append(missionID)
             }
         })
-        print("inside MyMissionsTableView")
     }
     
     
@@ -103,12 +100,13 @@ class MyMissionsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toViewMyMission" { // Posting Mission
+        if segue.identifier == "toViewMyMission" { // Posted Mission
             let destination = segue.destination as? ViewMyMission
             destination?.missionID = selectedMission
+            destination?.enteredFromMap = false
         }
         
-        if segue.identifier == "totoViewAcceptedMission" {
+        if segue.identifier == "toViewAcceptedMission" {
             let destination = segue.destination as? ViewAcceptedMission
             destination?.missionID = selectedMission
         }

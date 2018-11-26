@@ -18,6 +18,12 @@ class ViewMyMission: UIViewController {
     let userID = Auth.auth().currentUser!.uid
     var missionID = ""
     var posterID = ""
+    var enteredFromMap = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +53,16 @@ class ViewMyMission: UIViewController {
         // Remove from https://postmishone.firebaseio.com/users/(currentuserid)/
         self.ref.child("Users").child(posterID).child("MissionPosts").child(missionID).removeValue()
         
-        backTwo()
-    }
-    
-    @IBAction func PaymentPress(_ sender: Any) {
+        if(enteredFromMap) {
+            print("POP ONE")
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            print("POP TWO")
+            backTwo()
+        }
         
-        
     }
-    
     
     
     @IBAction func updateMission(_ sender: Any) {
@@ -63,7 +71,14 @@ class ViewMyMission: UIViewController {
         ref?.child("PostedMissions").child(missionID).updateChildValues(["missionDescription" : missionDescriptionTextView.text!])
         ref?.child("PostedMissions").child(missionID).updateChildValues(["reward" : missionRewardTextField.text!])
         
-        backTwo()
+        if(enteredFromMap) {
+            print("POP ONE")
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            print("POP TWO")
+            backTwo()
+        }
     }
     
     func backTwo() {
