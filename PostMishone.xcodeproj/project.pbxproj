@@ -25,6 +25,7 @@
 		57073D0E21AB8D6600EAAC02 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57073D0521AB8D6600EAAC02 /* SafariServices.framework */; };
 		57073D5021AB9C7B00EAAC02 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D4F21AB9C7B00EAAC02 /* PaymentViewController.swift */; };
 		57073D5221AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57073D5121AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist */; };
+		57073D5621AC09AC00EAAC02 /* ViewAcceptedMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */; };
 		57B53330218EE2CD004C89B4 /* MissionDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */; };
 		57B533322192D743004C89B4 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B533312192D743004C89B4 /* BaseTabBarController.swift */; };
 		57B533342192DCD6004C89B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B533332192DCD6004C89B4 /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		57073D0521AB8D6600EAAC02 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		57073D4F21AB9C7B00EAAC02 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		57073D5121AB9C8E00EAAC02 /* PayPal-iOS-SDK-Sample-App-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PayPal-iOS-SDK-Sample-App-Info.plist"; sourceTree = "<group>"; };
+		57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAcceptedMission.swift; sourceTree = "<group>"; };
 		57B5332F218EE2CD004C89B4 /* MissionDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDescriptionViewController.swift; sourceTree = "<group>"; };
 		57B533312192D743004C89B4 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		57B533332192DCD6004C89B4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				6C472E5421A0DD37004BF060 /* GoogleService-Info.plist */,
 				57DA65EF2173628E008B9E06 /* Info.plist */,
 				57073CF821AB8BF000EAAC02 /* PostMishone-Bridging-Header.h */,
+				57073D5521AC09AC00EAAC02 /* ViewAcceptedMission.swift */,
 			);
 			path = PostMishone;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 			files = (
 				57B533322192D743004C89B4 /* BaseTabBarController.swift in Sources */,
 				57073CF721AB675200EAAC02 /* NewMessageTableViewController.swift in Sources */,
+				57073D5621AC09AC00EAAC02 /* ViewAcceptedMission.swift in Sources */,
 				57DA66072173E71A008B9E06 /* MainViewController.swift in Sources */,
 				57073CF321AB675200EAAC02 /* ChatMessageCell.swift in Sources */,
 				57DA66052173E27C008B9E06 /* MainAppScreen.swift in Sources */,

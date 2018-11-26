@@ -12,7 +12,7 @@ import Firebase
 
 class MyMissionsTableViewController: UITableViewController {
     var ref: DatabaseReference!
-    var missionIDS = [String]()
+    var missionIDS = [String]() // Stores each missionID of the user's "PostedMissions"
     var missionNames = [String]()
     let userID = Auth.auth().currentUser!.uid
     var selectedMission = ""
@@ -35,6 +35,7 @@ class MyMissionsTableViewController: UITableViewController {
                         if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String {
                             print(missionName)
                             self.missionNames.append(missionName)
+                            self.missionIDS.append(missionID)
                             self.tableView.reloadData()
                         }
                     })
@@ -46,12 +47,13 @@ class MyMissionsTableViewController: UITableViewController {
                         if let dic = snapshot.value as? [String:Any], let missionName = dic["missionName"] as? String {
                             print(missionName)
                             self.missionNames.append(missionName)
+                            self.missionIDS.append(missionID)
                             self.tableView.reloadData()
                         }
                     })
                 }
 
-                self.missionIDS.append(missionID)
+//                self.missionIDS.append(missionID)
             }
         })
         print("inside MyMissionsTableView")
@@ -80,13 +82,37 @@ class MyMissionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedMission = missionIDS[indexPath.row]
         print(selectedMission)
-        performSegue(withIdentifier: "toViewMyMission", sender: self)
+        
+        
+        ref?.child("Users").child(userID).child("MissionPosts").observeSingleEvent(of: .value, with: { (snapshot) in
+
+            if let dic = snapshot.value as? [String: Bool] {
+                let isUnderAcceptedMissions = dic[self.selectedMission]
+                if(isUnderAcceptedMissions!) {
+                    print("toViewAcceptedMission")
+                    self.performSegue(withIdentifier: "toViewAcceptedMission", sender: self)
+                }
+                else {
+                    print("toViewMyMission")
+                    self.performSegue(withIdentifier: "toViewMyMission", sender: self)
+                }
+                
+            }
+        })
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as? ViewMyMission
-        destination?.missionID = selectedMission
+        if segue.identifier == "toViewMyMission" { // Posting Mission
+            let destination = segue.destination as? ViewMyMission
+            destination?.missionID = selectedMission
+        }
+        
+        if segue.identifier == "totoViewAcceptedMission" {
+            let destination = segue.destination as? ViewAcceptedMission
+            destination?.missionID = selectedMission
+        }
+        
     }
 
 }
